@@ -2,7 +2,7 @@ import { BulletController } from "./bulletController.js";
 
 //export class Player{
 export class Key{
-    constructor(game, keys, gameLevel){
+    constructor(game, keys, gameLevel, enemy){
         this.game = game;
         this.width = 160;
         this.height = 160;
@@ -20,7 +20,9 @@ export class Key{
 
         this.keys = keys;
 
-        this.gameLevel = gameLevel
+        this.gameLevel = gameLevel;
+
+        this.enemy = enemy;
 
         this.bulletController = new BulletController(this.game, this.y, this.keys, this.gameLevel);
     }

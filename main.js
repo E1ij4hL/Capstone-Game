@@ -15,6 +15,14 @@ window.addEventListener('load', function(){
     const myObjDeserialized = JSON.parse(localStorage.getItem('myObj'));
     const gameLevel = myObjDeserialized.levelNum;
 
+    //added this
+    if(gameLevel === 'level1'){
+        canvas.style.backgroundImage = "url('assets/backgrounds/testOrcBackground4.png')";
+    }
+    if(gameLevel === 'level2'){
+        canvas.style.backgroundImage = "url('assets/backgrounds/testCastleBackground4.png')";
+    }
+
     class Game{
         constructor(width, height){
             this.width = width;

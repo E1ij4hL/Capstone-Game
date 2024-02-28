@@ -2,6 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'press_start_2pregular';
+}
+
+@font-face {
+    font-family: 'press_start_2pregular';
+    src: url('assets/fonts/webfontkit-20240220-141817/pressstart2p-regular-webfont.woff2') format('woff2'),
+         url('assets/fonts/webfontkit-20240220-141817/pressstart2p-regular-webfont.woff') format('woff');
+
+    font-weight: normal;
 }
 
 #canvas1{
@@ -12,6 +21,8 @@
     transform: translate(-50%, -50%);
     max-width: 100%;
     max-height: 100%;
+
+    background-color: azure;
 }
 
 img, audio {
@@ -26,16 +37,44 @@ div {
     text-align: center;
 }
 
-p {
+#result {
     position: absolute;
-    top: 25%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    font-size: 6em;
+    font-size: 4em;
+}
+
+#result2 {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    text-align: center;
+    font-size: 4em;
+}
+
+.savedResults {
+    color: rgb(0, 0, 0);
+    font-size: 35px;
+}
+
+.buttonHover {
+    display: block;
+    transform: translate(-46%, -5%)
 }
 
 button {
     height: 30px;
     width: 60px;
+}
+
+body {
+    background-color: rgb(35, 94, 204);
+    background-image: url('assets/backgrounds/animatedCloudBackground.gif')
+}
+
+canvas {
+    background-image: url('assets/backgrounds/testCastleBackground4.png')
 }

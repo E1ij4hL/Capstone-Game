@@ -1,4 +1,6 @@
 import { Bullet } from "./bullet.js";
+import { Grade } from "./determineGrade.js";
+import { SaveScore } from "./saveScore.js";
 
 export class BulletController{
     bullets = [];
@@ -19,6 +21,9 @@ export class BulletController{
     badJ = false;
     badL = false;
 
+    //added this
+    amountOfTargets = 0;
+
     constructor(canvas, y, keys, gameLevel){
         this.canvas = canvas;
         this.y = y;
@@ -31,11 +36,11 @@ export class BulletController{
             if(this.bullets.length < 1){
                 //this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)]));
                 //added this
-                if(this.gameLevel === 'level1'){
-                    this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 4));
+                if(this.gameLevel === 'level1' && this.amountOfTargets < 20){ //normally 20
+                    this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 4, this.gameLevel)); //normally 4
                 }
-                if(this.gameLevel === 'level2'){
-                    this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 6));
+                if(this.gameLevel === 'level2' && this.amountOfTargets < 30){
+                    this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 6, this.gameLevel));
                 }
 
                 this.beforeScore = this.score + 1;
@@ -45,6 +50,32 @@ export class BulletController{
         }
         this.timerTillNextBullet--;
         
+        //added this
+        if(this.gameLevel === 'level1' && this.amountOfTargets === 20){ //normally 20
+            var accuracyPercentage = this.score / this.amountOfTargets * 100;
+            accuracyPercentage = accuracyPercentage.toFixed(2);
+            var grade = new Grade(accuracyPercentage);
+            grade.calculate();
+            var levelGrade = grade.grade;
+            document.getElementById('result').innerHTML = accuracyPercentage.toString() + '%' + ' (' + levelGrade + ')';
+
+            //added this
+            var mySavedScore = new SaveScore(accuracyPercentage, levelGrade);
+            mySavedScore.saveScoreLevel1();
+        }
+
+        if(this.gameLevel === 'level2' && this.amountOfTargets === 30){
+            var accuracyPercentage = this.score / this.amountOfTargets * 100;
+            accuracyPercentage = accuracyPercentage.toFixed(2);
+            var grade = new Grade(accuracyPercentage);
+            grade.calculate();
+            var levelGrade = grade.grade;
+            document.getElementById('result').innerHTML = accuracyPercentage.toString() + '%' + ' (' + levelGrade + ')';
+
+            //added this
+            var mySavedScore = new SaveScore(accuracyPercentage, levelGrade);
+            mySavedScore.saveScoreLevel2();
+        }
     }
 
     draw(ctx){
@@ -63,6 +94,9 @@ export class BulletController{
                 this.badD = false;
                 this.badJ = false;
                 this.badL = false;
+
+                //added this
+                this.amountOfTargets += 1;
             }
 
             //added this
@@ -133,6 +167,10 @@ export class BulletController{
 
         if(this.bullets[0].y <= 476 && this.bullets[0].y >= 400 && this.bullets[0].x === this.xPositions[3] && this.keys.includes('l')){
             this.badL = true;
+        }
+
+        if(this.bullets[0].y >= this.canvas.height - 60){
+            correctSound.play();
         }
         
         document.getElementById('result').innerHTML = this.score;
