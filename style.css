@@ -23,10 +23,19 @@
     max-height: 100%;
 
     background-color: azure;
+    background-size: contain;
 }
 
 img, audio {
     display: none;
+
+    /*max-width: 900%;*/
+
+    max-width: 100vh; /*was 100vh*/
+    max-height: 10vh; /*was 15vh*/
+
+    width: auto;
+    height: auto;
 }
 
 div {
@@ -43,7 +52,8 @@ div {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    font-size: 4em;
+    font-size: 4vw;
+    display: none;
 }
 
 #result2 {
@@ -52,17 +62,118 @@ div {
     left: 50%;
     transform: translate(-50%, 50%);
     text-align: center;
-    font-size: 4em;
+    font-size: 4vw;
+}
+
+#pressToStart {
+    display: none;
+}
+
+#restartButton {
+    display: none;
+}
+
+#pausedState{
+    display: none;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%);
+    font-size: 6vw;
+}
+
+#originalPausedState {
+    display: inline;
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%);
+    font-size: 6vw;
+}
+
+#pauseMenu {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding-top: 200px;
+    padding-bottom: 300px;
+    padding-right: 450px;
+    padding-left: 450px;
+    max-width: 100%;
+    max-height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#originalPauseMenu {
+    display: inline;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding-top: 200px;
+    padding-bottom: 300px;
+    padding-right: 450px;
+    padding-left: 450px;
+    max-width: 100%;
+    max-height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#startButton {
+    max-width: 100vh;
+    max-height: 20vh;
+
+    width: auto;
+    height: auto;
 }
 
 .savedResults {
     color: rgb(0, 0, 0);
-    font-size: 35px;
+    /*font-size: 35px;*/
+
+    font-size: 2.1vw; /*was 2.3vw*/
 }
 
 .buttonHover {
     display: block;
-    transform: translate(-46%, -5%)
+    transform: translate(-46%, -5%);
+}
+
+#levelButtons {
+    transform: translate(-50%, -40%);
+    display: grid;
+    grid-template-areas: 
+        "exitSelect     deleteSelect"
+        "level1Select   level2Select"
+        "level3Select   level4Select"
+        "level5Select   level6Select";
+
+    
+    gap: 25px 300px;
+    
+}
+
+#exitButtonLevelSelect{
+    grid-area: exitSelect;
+}
+#deleteButtonLevelSelect{
+    grid-area: deleteSelect;
+}
+#level1Stuff{
+    grid-area: level1Select;
+}
+#level2Stuff{
+    grid-area: level2Select;
+}
+#level3Stuff{
+    grid-area: level3Select;
+}
+#level4Stuff{
+    grid-area: level4Select;
+}
+#level5Stuff{
+    grid-area: level5Select;
+}
+#level6Stuff{
+    grid-area: level6Select;
 }
 
 button {
@@ -72,9 +183,6 @@ button {
 
 body {
     background-color: rgb(35, 94, 204);
-    background-image: url('assets/backgrounds/animatedCloudBackground.gif')
-}
-
-canvas {
-    background-image: url('assets/backgrounds/testCastleBackground4.png')
+    background-image: url('assets/backgrounds/waterBackgroundTest10.gif');
+    /*background-size: cover;*/
 }

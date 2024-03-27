@@ -9,23 +9,79 @@
     <script src="selectLevel.js"></script>
 </head>
 <body>
-    <div>
+    <div id="levelButtons">
+        <span id="exitButtonLevelSelect">
+            <a href="index.html"><button><img class="buttonHover" src="assets/buttons images/Exit_Button2.png" onmouseover="changeImage(11, this)" onmouseout="changeImage(12, this)"></button></a>
+        </span>
+        
+        <span id="deleteButtonLevelSelect">
+            <button onclick="removeScores()"><img class="buttonHover" src="assets/buttons images/Wipe_Button2.png" onmouseover="changeImage(13, this)" onmouseout="changeImage(14, this)"></button>
+        </span>
+
         <!--<h2>Level 1 (Normal)</h2>-->
-        <a href="game.html"><button onclick="level1()"><img class="buttonHover" src="assets/LEVEL1_Button.png" onmouseover="changeImage(3, this)" onmouseout="changeImage(4, this)"></button></a>
-        <br>
-        <p id="level1Result" class="savedResults"></p>
+        <span id="level1Stuff">
+            <a href="game.html" id="level1Img"><button onclick="level1()"><img class="buttonHover" src="assets/LEVEL1_Button.png" onmouseover="changeImage(3, this)" onmouseout="changeImage(4, this)"></button></a>
+            <br>
+            <p id="level1Result" class="savedResults"></p>
+        </span>
 
         <br>
         <br>
         <br>
 
         <!--<h2>Level 2 (Increased Speed)</h2>-->
-        <a href="game.html"><button onclick="level2()"><img class="buttonHover" src="assets/LEVEL2_Button.png" onmouseover="changeImage(5, this)" onmouseout="changeImage(6, this)"></button></a>
+        <span id="level2Stuff">
+            <a href="game.html" id="level2Img"><button onclick="level2()"><img class="buttonHover" src="assets/LEVEL2_Button.png" onmouseover="changeImage(5, this)" onmouseout="changeImage(6, this)"></button></a>
+            <br>
+            <p id="level2Result" class="savedResults"></p>  
+        </span>
+        
         <br>
-        <p id="level2Result" class="savedResults"></p>
+        <br>
+        <br>
+
+        <!--<h2>Level 3 (50% Change of Bomb)</h2>-->
+        <span id="level3Stuff">
+            <a href="game.html" id="level3Img"><button onclick="level3()"><img class="buttonHover" src="assets/LEVEL3_Button.png" onmouseover="changeImage(7, this)" onmouseout="changeImage(8, this)"></button></a>
+            <br>
+            <p id="level3Result" class="savedResults"></p>
+        </span>
+        
+        <br>
+        <br>
+        <br>
+
+        <!--<h2>Level 4 (Shoot more than 1 projectile)</h2>-->
+        <span id="level4Stuff">
+            <a href="game.html" id="level4Img"><button onclick="level4()"><img class="buttonHover" src="assets/LEVEL4_Button.png" onmouseover="changeImage(9, this)" onmouseout="changeImage(10, this)"></button></a>
+            <br>
+            <p id="level4Result" class="savedResults"></p>
+        </span>
+   
+        <br>
+        <br>
+        <br>
+
+        <!--<h2>Level 5 (WIP)</h2>-->
+        <span id="level5Stuff">
+            <a href="game.html" id="level5Img"><button onclick="level5()"><img class="buttonHover" src="assets/LEVEL5_Button.png" onmouseover="changeImage(15, this)" onmouseout="changeImage(16, this)"></button></a>
+            <br>
+            <p id="level5Result" class="savedResults"></p>
+        </span>
+
+        <br>
+        <br>
+        <br>
+
+        <span id="level6Stuff">
+            
+        </span>
     </div>
-    <a href="index.html"><button>EXIT</button></a>
-    <button onclick="removeScores()">DELETE</button>
+
+    <!--<a href="game.html"><button>L5</button></a>-->
+    
+    <!--<a href="index.html"><button id="exitButtonLevelSelect">EXIT</button></a>-->
+    <!--<button id="deleteButtonLevelSelect"onclick="removeScores()">DELETE</button>-->
 
     <script>
         const myObjDeserialized1 = JSON.parse(localStorage.getItem('scoreObj1'));
@@ -33,6 +89,15 @@
 
         const myObjDeserialized2 = JSON.parse(localStorage.getItem('scoreObj2'));
         document.getElementById('level2Result').innerHTML = '<b>Score: </b>' + myObjDeserialized2.levelScore.toString() + '%' + ' (' + myObjDeserialized2.levelGrade + ')';
+
+        const myObjDeserialized3 = JSON.parse(localStorage.getItem('scoreObj3'));
+        document.getElementById('level3Result').innerHTML = '<b>Score: </b>' + myObjDeserialized3.levelScore.toString() + '%' + ' (' + myObjDeserialized3.levelGrade + ')';
+
+        const myObjDeserialized4 = JSON.parse(localStorage.getItem('scoreObj4'));
+        document.getElementById('level4Result').innerHTML = '<b>Score: </b>' + myObjDeserialized4.levelScore.toString() + '%' + ' (' + myObjDeserialized4.levelGrade + ')';
+
+        const myObjDeserialized5 = JSON.parse(localStorage.getItem('scoreObj5'));
+        document.getElementById('level5Result').innerHTML = '<b>Score: </b>' + myObjDeserialized5.levelScore.toString() + '%' + ' (' + myObjDeserialized5.levelGrade + ')';
     </script>
 </body>
 </html>

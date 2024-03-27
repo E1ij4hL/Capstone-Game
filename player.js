@@ -2,7 +2,7 @@ import { BulletController } from "./bulletController.js";
 
 //export class Player{
 export class Key{
-    constructor(game, keys, gameLevel, enemy){
+    constructor(game, keys, gameLevel){
         this.game = game;
         this.width = 160;
         this.height = 160;
@@ -14,15 +14,11 @@ export class Key{
         this.isDKey = false;
         this.isJKey = false;
         this.isLKey = false;
-
-        //added this
         this.isShooterKey = false;
 
         this.keys = keys;
 
         this.gameLevel = gameLevel;
-
-        this.enemy = enemy;
 
         this.bulletController = new BulletController(this.game, this.y, this.keys, this.gameLevel);
     }
@@ -31,6 +27,7 @@ export class Key{
         //if (input.includes('a')) this.image = document.getElementById('aKeyPressed');
         //else this.image = document.getElementById('aKey');
 
+        //When the key is pressed down switch to pressed down sprite
         if (this.isAKey === true){
             //if (input.includes('a')){ //update used to accept input as an argument for this.input.keys from main.js, when calling update() in the update function
             if (this.keys.includes('a')){
@@ -68,18 +65,29 @@ export class Key{
             }
         }
 
-        //added this
         if (this.isShooterKey === true){
             if (this.keys.includes('w')){
                 this.bulletController.shoot();
+
+                //added this
+                document.getElementById('pressToStart').innerHTML = 'w';
             }
+        }
+
+        //For switching between pause and resume
+        if (this.keys.includes('Escape') && document.getElementById('pausedState').innerText == 'resume'){
+            this.keys.splice(this.keys.indexOf('Escape'), 1);
+            document.getElementById('pausedState').innerHTML = 'paused';
+        }
+        if (this.keys.includes('Escape') && document.getElementById('pausedState').innerText == 'paused'){
+            this.keys.splice(this.keys.indexOf('Escape'), 1);
+            document.getElementById('pausedState').innerHTML = 'resume';
         }
     }
 
     draw(context){
         context.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
         
-        //added this
         this.bulletController.draw(context);
     }
 }

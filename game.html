@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboard Warrior</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
     <canvas id="canvas1"></canvas>
@@ -30,12 +29,31 @@
     <img id="enemy4" src="assets/new ogre frames/Ogre_Frame4.png">
 
     <b><p id="result"></p></b>
-    <b><p id="result2"></p></b>
+    <!--<b><p id="result2"></p></b>-->
 
-    <audio controls id="correctSound" src="assets/sounds/Correct Sound.mp3"></audio>
-    <audio controls id="badSound" src="assets/sounds/Some Sound.mp3"></audio>
+    <!--<audio controls id="correctSound" src="assets/sounds/Correct Sound.mp3"></audio>
+    <audio controls id="badSound" src="assets/sounds/Some Sound.mp3"></audio>-->
 
-    <a href="level_select.html"><button>EXIT</button></a>
+    <audio controls id="missSound" src="assets/sounds/Correct Sound.mp3"></audio>
+    <audio controls id="hitSound" src="assets/sounds/Some Sound Pt2.mp3"></audio>
+
+    <a href="level_select.html"><button id="exitButton">EXIT</button></a>
+    <button id="restartButton" onclick="window.location.reload();">RESTART</button>
+
+    <!--<p id="pausedState">resume</p>-->
+
+    <div id="pauseMenu">
+        <p id="pausedState">resume</p>
+    </div>
+
+    <p id="pressToStart"></p>
+
+    <p id="positionX">Hello</p>
+    <p id="positionY">Hello</p>
+    <p id="canvasExitButton">0</p>
+    <p id="canvasRestartButton">0</p>
+    <p id="canvasRealWidth">0</p>
+    <p id="canvasRealHeight">0</p>
 
     <script type="module" src="main.js"></script>
 </body>
