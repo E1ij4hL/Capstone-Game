@@ -36,6 +36,14 @@ img, audio {
 
     width: auto;
     height: auto;
+
+    /*added this stuff, this is so it doesn't drag an image*/
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
 }
 
 div {
@@ -70,6 +78,10 @@ div {
 }
 
 #restartButton {
+    display: none;
+}
+
+.hidden {
     display: none;
 }
 
@@ -134,7 +146,8 @@ div {
 
 .buttonHover {
     display: block;
-    transform: translate(-46%, -5%);
+    /*transform: translate(-46%, -5%);*/
+    transform: translate(-41%, -5%);
 }
 
 #levelButtons {
@@ -144,7 +157,7 @@ div {
         "exitSelect     deleteSelect"
         "level1Select   level2Select"
         "level3Select   level4Select"
-        "level5Select   level6Select";
+        "level5Select   settingsSelect";
 
     
     gap: 25px 300px;
@@ -172,8 +185,38 @@ div {
 #level5Stuff{
     grid-area: level5Select;
 }
-#level6Stuff{
-    grid-area: level6Select;
+#settingsStuff{
+    grid-area: settingsSelect;
+}
+
+#settingsButtons {
+    transform: translate(-50%, -40%);
+    display: grid;
+    grid-template-areas: 
+        "exitSettings     blankSettingsOne"
+        "waterSettings   grassSettings"
+        "cloudSettings   blankSettingsTwo";
+
+    
+    gap: 25px 350px; /*was 25px 500px*/
+}
+#exitButtonSettings {
+    grid-area: exitSettings;
+}
+#waterBackgroundSettings {
+    grid-area: waterSettings;
+}
+#grassBackgroundSettings {
+    grid-area: grassSettings;
+}
+#cloudBackgroundSettings {
+    grid-area: cloudSettings;
+}
+#blankSettings1 {
+    grid-area: blankSettingsOne;
+}
+#blankSettings2 {
+    grid-area: blankSettingsTwo;
 }
 
 button {
@@ -185,4 +228,8 @@ body {
     background-color: rgb(35, 94, 204);
     background-image: url('assets/backgrounds/waterBackgroundTest10.gif');
     /*background-size: cover;*/
+}
+
+::-webkit-scrollbar{
+    display: none;
 }

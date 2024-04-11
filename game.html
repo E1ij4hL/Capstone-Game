@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboard Warrior</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/SmileyFaceIcon.png">
 </head>
-<body>
+<body onload="setBackground()">
     <canvas id="canvas1"></canvas>
     
     <img id="aKey" src="assets/A_Key.png">
@@ -37,8 +38,8 @@
     <audio controls id="missSound" src="assets/sounds/Correct Sound.mp3"></audio>
     <audio controls id="hitSound" src="assets/sounds/Some Sound Pt2.mp3"></audio>
 
-    <a href="level_select.html"><button id="exitButton">EXIT</button></a>
-    <button id="restartButton" onclick="window.location.reload();">RESTART</button>
+    <a href="level_select.html" class="hidden"><button id="exitButton">EXIT</button></a>
+    <!--<button id="restartButton" onclick="window.location.reload();">RESTART</button>-->
 
     <!--<p id="pausedState">resume</p>-->
 
@@ -48,13 +49,26 @@
 
     <p id="pressToStart"></p>
 
-    <p id="positionX">Hello</p>
-    <p id="positionY">Hello</p>
-    <p id="canvasExitButton">0</p>
-    <p id="canvasRestartButton">0</p>
-    <p id="canvasRealWidth">0</p>
-    <p id="canvasRealHeight">0</p>
+    <p id="positionX" class="hidden">0</p>
+    <p id="positionY" class="hidden">0</p>
+    <p id="canvasExitButton" class="hidden">0</p>
+    <p id="canvasRestartButton" class="hidden">0</p>
+    <p id="canvasSoundButton" class="hidden">0</p>
+    <p id="canvasRealWidth" class="hidden">0</p>
+    <p id="canvasRealHeight" class="hidden">0</p>
+    <p id="canvasSound" class="hidden">Sound Playing</p>
 
     <script type="module" src="main.js"></script>
+
+    <script>
+        const soundObjDeserialized1 = JSON.parse(localStorage.getItem('soundObj'));
+        document.getElementById('canvasSound').innerHTML = soundObjDeserialized1.soundStatus.toString();
+
+        function setBackground(){
+            let backgroundObjDeserialized = JSON.parse(localStorage.getItem('backgroundObj'));
+            document.body.style.background = backgroundObjDeserialized.backgroundImage.toString();
+            console.log(backgroundObjDeserialized);
+        }
+    </script>
 </body>
 </html>

@@ -5,22 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboard Warrior</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/SmileyFaceIcon.png">
     
     <script src="selectLevel.js"></script>
+
 </head>
-<body>
+<body onload="setBackground()">
     <div id="levelButtons">
         <span id="exitButtonLevelSelect">
-            <a href="index.html"><button><img class="buttonHover" src="assets/buttons images/Exit_Button2.png" onmouseover="changeImage(11, this)" onmouseout="changeImage(12, this)"></button></a>
+            <a href="index.html"><button><img class="buttonHover" src="assets/buttons images/Exit_Button2.png" 
+                onmouseover="changeImage('assets/buttons images/Exit_Button_Hover2.png', this)" onmouseout="changeImage('assets/buttons images/Exit_Button2.png', this)"></button></a>
         </span>
         
         <span id="deleteButtonLevelSelect">
-            <button onclick="removeScores()"><img class="buttonHover" src="assets/buttons images/Wipe_Button2.png" onmouseover="changeImage(13, this)" onmouseout="changeImage(14, this)"></button>
+            <button onclick="removeScores()"><img class="buttonHover" src="assets/buttons images/Wipe_Button2.png" 
+                onmouseover="changeImage('assets/buttons images/Wipe_Button_Hover2.png', this)" onmouseout="changeImage('assets/buttons images/Wipe_Button2.png', this)"></button>
         </span>
 
         <!--<h2>Level 1 (Normal)</h2>-->
         <span id="level1Stuff">
-            <a href="game.html" id="level1Img"><button onclick="level1()"><img class="buttonHover" src="assets/LEVEL1_Button.png" onmouseover="changeImage(3, this)" onmouseout="changeImage(4, this)"></button></a>
+            <a href="game.html" id="level1Img"><button onclick="level1()"><img class="buttonHover" src="assets/LEVEL1_Button.png" 
+                onmouseover="changeImage('assets/LEVEL1_Button_Hover.png', this)" onmouseout="changeImage('assets/LEVEL1_Button.png', this)"></button></a>
             <br>
             <p id="level1Result" class="savedResults"></p>
         </span>
@@ -31,7 +36,8 @@
 
         <!--<h2>Level 2 (Increased Speed)</h2>-->
         <span id="level2Stuff">
-            <a href="game.html" id="level2Img"><button onclick="level2()"><img class="buttonHover" src="assets/LEVEL2_Button.png" onmouseover="changeImage(5, this)" onmouseout="changeImage(6, this)"></button></a>
+            <a href="game.html" id="level2Img"><button onclick="level2()"><img class="buttonHover" src="assets/LEVEL2_Button.png" 
+                onmouseover="changeImage('assets/LEVEL2_Button_Hover.png', this)" onmouseout="changeImage('assets/LEVEL2_Button.png', this)"></button></a>
             <br>
             <p id="level2Result" class="savedResults"></p>  
         </span>
@@ -42,7 +48,8 @@
 
         <!--<h2>Level 3 (50% Change of Bomb)</h2>-->
         <span id="level3Stuff">
-            <a href="game.html" id="level3Img"><button onclick="level3()"><img class="buttonHover" src="assets/LEVEL3_Button.png" onmouseover="changeImage(7, this)" onmouseout="changeImage(8, this)"></button></a>
+            <a href="game.html" id="level3Img"><button onclick="level3()"><img class="buttonHover" src="assets/LEVEL3_Button.png" 
+                onmouseover="changeImage('assets/LEVEL3_Button_Hover.png', this)" onmouseout="changeImage('assets/LEVEL3_Button.png', this)"></button></a>
             <br>
             <p id="level3Result" class="savedResults"></p>
         </span>
@@ -53,7 +60,8 @@
 
         <!--<h2>Level 4 (Shoot more than 1 projectile)</h2>-->
         <span id="level4Stuff">
-            <a href="game.html" id="level4Img"><button onclick="level4()"><img class="buttonHover" src="assets/LEVEL4_Button.png" onmouseover="changeImage(9, this)" onmouseout="changeImage(10, this)"></button></a>
+            <a href="game.html" id="level4Img"><button onclick="level4()"><img class="buttonHover" src="assets/LEVEL4_Button.png" 
+                onmouseover="changeImage('assets/LEVEL4_Button_Hover.png', this)" onmouseout="changeImage('assets/LEVEL4_Button.png', this)"></button></a>
             <br>
             <p id="level4Result" class="savedResults"></p>
         </span>
@@ -64,7 +72,8 @@
 
         <!--<h2>Level 5 (WIP)</h2>-->
         <span id="level5Stuff">
-            <a href="game.html" id="level5Img"><button onclick="level5()"><img class="buttonHover" src="assets/LEVEL5_Button.png" onmouseover="changeImage(15, this)" onmouseout="changeImage(16, this)"></button></a>
+            <a href="game.html" id="level5Img"><button onclick="level5()"><img class="buttonHover" src="assets/LEVEL5_Button.png" 
+                onmouseover="changeImage('assets/LEVEL5_Button_Hover.png', this)" onmouseout="changeImage('assets/LEVEL5_Button.png', this)"></button></a>
             <br>
             <p id="level5Result" class="savedResults"></p>
         </span>
@@ -73,8 +82,9 @@
         <br>
         <br>
 
-        <span id="level6Stuff">
-            
+        <span id="settingsStuff">
+            <a href="settings.html"><button><img class="buttonHover" src="assets/buttons images/Settings_Button.png" 
+                onmouseover="changeImage('assets/buttons images/Settings_Button_Hover.png', this)" onmouseout="changeImage('assets/buttons images/Settings_Button.png', this)"></button></a>
         </span>
     </div>
 
@@ -98,6 +108,12 @@
 
         const myObjDeserialized5 = JSON.parse(localStorage.getItem('scoreObj5'));
         document.getElementById('level5Result').innerHTML = '<b>Score: </b>' + myObjDeserialized5.levelScore.toString() + '%' + ' (' + myObjDeserialized5.levelGrade + ')';
+
+        function setBackground(){
+            let backgroundObjDeserialized = JSON.parse(localStorage.getItem('backgroundObj'));
+            document.body.style.background = backgroundObjDeserialized.backgroundImage.toString();
+            console.log(backgroundObjDeserialized);
+        }
     </script>
 </body>
 </html>

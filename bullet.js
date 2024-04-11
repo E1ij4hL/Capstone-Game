@@ -36,9 +36,11 @@ export class Bullet{
         this.enemy2 = new Image();
         this.enemy2.src = 'assets/new ogre frames/wizardDudeUpscaled.png';
         this.enemy3 = new Image();
-        this.enemy3.src = 'assets/new ogre frames/Skeleton_Enemy.png'; //was using Skeleton_Enemy3
+        this.enemy3.src = 'assets/new ogre frames/Skeleton_Enemy4.png'; //was using Skeleton_Enemy3 or Skeleton_Enemy
         this.enemy4 = new Image();
         this.enemy4.src = 'assets/new ogre frames/Vampire_Enemy.png';
+        this.enemy5 = new Image();
+        this.enemy5.src = 'assets/new ogre frames/Portal_Enemy_Spritesheet.png';
         
         
         this.gameLevel = gameLevel;
@@ -165,6 +167,8 @@ export class Bullet{
         }
 
         if(this.gameLevel === 'level5'){
+            //ctx.drawImage(this.enemy5, 0, 0, 160, 160, this.x - 40, 25, 160, 160);
+
             ctx.fillStyle = this.color;
             //this.y += this.speed;
             //ctx.fillRect(this.x, this.y, this.width, this.height);

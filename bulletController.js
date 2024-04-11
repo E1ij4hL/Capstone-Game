@@ -47,39 +47,48 @@ export class BulletController{
 
     shoot(){
         if(this.timerTillNextBullet <= 0){
-            if(this.bullets.length < 2 && this.ensureBullet == 0){ //normally 1
+            if(this.bullets.length < 2 && this.ensureBullet == 0){ //normally 1, then it was 2
                 this.ensureBullet = 1;
 
-                if(this.gameLevel === 'level1' && this.totalTargets < 20){ //normally 20
+                if(this.gameLevel === 'level1' && this.totalTargets < 30){ //normally 20
                     this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 4, this.gameLevel)); //normally 4
                     this.bulletValue = 1;
                 }
-                if(this.gameLevel === 'level2' && this.totalTargets < 30){
+                if(this.gameLevel === 'level2' && this.totalTargets < 45){
                     this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 6, this.gameLevel));
                     this.bulletValue = 1;
                 }
-                if(this.gameLevel === 'level3' && this.totalTargets < 15){
+                if(this.gameLevel === 'level3' && this.totalTargets < 40){ //was 25
                     //this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 4, this.gameLevel));
-                    var randomNum = Math.floor(Math.random() * 4); //give me a random number from 0 to 4
-                    if(randomNum == 1){ //25% chance of pushing a bomb
+                    var randomNum = Math.floor(Math.random() * 3);
+                    if(randomNum == 1){
                         var bomb = 1;
-                        this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 5, this.gameLevel, bomb));
+                        this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 6, this.gameLevel, bomb));
                         this.bulletValue = -1; //normally this is -1
                         this.amountOfTargets = this.amountOfTargets - 1;
                     }
                     else{ //push the normal projectile
-                        this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 5, this.gameLevel));
+                        this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 6, this.gameLevel));
                         this.bulletValue = 1;
                     }
                 }
-                if((this.gameLevel === 'level4') && this.totalTargets < 14){
-                    //this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 2, this.gameLevel));
+                if((this.gameLevel === 'level4') && this.totalTargets < 49){ //it was 14 when we sent 2 at a time, 13 at 3 at a time, (WAS 14)
                     this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 3, this.gameLevel));
+
+                    //added this
+                    /*var randomSpeed = Math.floor(Math.random() * 2);
+                    if(randomSpeed == 1){
+                        this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 4, this.gameLevel));
+                    }
+                    else{
+                        this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 3, this.gameLevel));
+                    }*/
+
                     this.bulletValue = 1;
                 }
-                if(this.gameLevel === 'level5' && this.totalTargets < 20){ //normally 20
+                if(this.gameLevel === 'level5' && this.totalTargets < 45){ //normally 20
                     this.currentLetter = this.letters[Math.floor(Math.random() * this.letters.length)];
-                    this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 3, this.gameLevel, this.currentLetter));
+                    this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 4, this.gameLevel, this.currentLetter));
                     console.log(`just pushed a bullet ${this.currentLetter}`);
                     this.bulletValue = 1;
                 }
@@ -93,7 +102,7 @@ export class BulletController{
         this.timerTillNextBullet--;
 
         //Calculate the accuracy of the performed level and display to the user
-        if(this.gameLevel === 'level1' && this.totalTargets === 20){ //normally 20
+        if(this.gameLevel === 'level1' && this.totalTargets === 30){ //normally 20
             var accuracyPercentage = this.score / this.amountOfTargets * 100;
             if(accuracyPercentage < 0){
                 accuracyPercentage = 0;
@@ -107,10 +116,10 @@ export class BulletController{
             var mySavedScore = new SaveScore(accuracyPercentage, levelGrade);
             mySavedScore.saveScoreLevel1();
 
-            document.getElementById('restartButton').style.display = 'inline'; //it can be inline or block, which ever looks better
+            //document.getElementById('restartButton').style.display = 'inline'; //it can be inline or block, which ever looks better
         }
 
-        if(this.gameLevel === 'level2' && this.totalTargets === 30){
+        if(this.gameLevel === 'level2' && this.totalTargets === 45){
             var accuracyPercentage = this.score / this.amountOfTargets * 100;
             if(accuracyPercentage < 0){
                 accuracyPercentage = 0;
@@ -124,10 +133,10 @@ export class BulletController{
             var mySavedScore = new SaveScore(accuracyPercentage, levelGrade);
             mySavedScore.saveScoreLevel2();
 
-            document.getElementById('restartButton').style.display = 'inline'; //it can be inline or block, which ever looks better
+           //document.getElementById('restartButton').style.display = 'inline'; //it can be inline or block, which ever looks better
         }
 
-        if(this.gameLevel === 'level3' && this.totalTargets === 15){
+        if(this.gameLevel === 'level3' && this.totalTargets === 40){ //was 25
             var accuracyPercentage = this.score / this.amountOfTargets * 100;
             if(accuracyPercentage < 0){
                 accuracyPercentage = 0;
@@ -141,10 +150,10 @@ export class BulletController{
             var mySavedScore = new SaveScore(accuracyPercentage, levelGrade);
             mySavedScore.saveScoreLevel3();
 
-            document.getElementById('restartButton').style.display = 'inline'; //it can be inline or block, which ever looks better
+            //document.getElementById('restartButton').style.display = 'inline'; //it can be inline or block, which ever looks better
         }
 
-        if(this.gameLevel === 'level4' && this.totalTargets === 15){
+        if(this.gameLevel === 'level4' && this.totalTargets === 50){ //was 15
             var accuracyPercentage = this.score / this.totalTargets * 100;
             if(accuracyPercentage < 0){
                 accuracyPercentage = 0;
@@ -158,10 +167,10 @@ export class BulletController{
             var mySavedScore = new SaveScore(accuracyPercentage, levelGrade);
             mySavedScore.saveScoreLevel4();
 
-            document.getElementById('restartButton').style.display = 'inline'; //it can be inline or block, which ever looks better
+            //document.getElementById('restartButton').style.display = 'inline'; //it can be inline or block, which ever looks better
         }
 
-        if(this.gameLevel === 'level5' && this.totalTargets === 20){ //normally 20
+        if(this.gameLevel === 'level5' && this.totalTargets === 45){ //normally 20
             var accuracyPercentage = this.score / this.amountOfTargets * 100;
             if(accuracyPercentage < 0){
                 accuracyPercentage = 0;
@@ -175,7 +184,7 @@ export class BulletController{
             var mySavedScore = new SaveScore(accuracyPercentage, levelGrade);
             mySavedScore.saveScoreLevel5();
 
-            document.getElementById('restartButton').style.display = 'inline'; //it can be inline or block, which ever looks better
+            //document.getElementById('restartButton').style.display = 'inline'; //it can be inline or block, which ever looks better
         }
     }
 
@@ -220,9 +229,16 @@ export class BulletController{
 
             if(this.isBulletOffScreen(bullet)){
                 //correctSound.play();
-                missSound.pause();
-                missSound.currentTime = 0;
-                missSound.play();
+                //missSound.pause();
+                //missSound.currentTime = 0;
+                //missSound.play();
+
+                //added this
+                if(document.getElementById('canvasSound').innerText == 'Sound Playing'){
+                    missSound.pause();
+                    missSound.currentTime = 0;
+                    missSound.play();
+                }
             }
             
             bullet.draw(ctx);
@@ -235,9 +251,17 @@ export class BulletController{
     }
 
     resetStuff(bullet){
-        hitSound.pause();
-        hitSound.currentTime = 0;
-        hitSound.play();
+        //hitSound.pause();
+        //hitSound.currentTime = 0;
+        //hitSound.play();
+
+        //added this
+        if(document.getElementById('canvasSound').innerText == 'Sound Playing'){
+            hitSound.pause();
+            hitSound.currentTime = 0;
+            hitSound.play();
+        }
+
         const index = this.bullets.indexOf(bullet);
         this.bullets.splice(index, 1);
         this.score = this.beforeScore;
@@ -310,7 +334,8 @@ export class BulletController{
             this.badL = true;
         }
         
-        if(this.gameLevel === 'level4' && this.amountOfTargets < 100){ //it was 8 before
+        if(this.gameLevel === 'level4'){ //it was 8 before, then I had it as 100 (&& this.amountOfTargets < 100)
+            //if(bullet.y <= 400 && bullet.y >=350 && (this.totalTargets == 1 || this.totalTargets == 3 || this.totalTargets == 9 || this.totalTargets == 12)){
             if(bullet.y <= 400 && bullet.y >=350){
                 this.ensureBullet = 0;
             }

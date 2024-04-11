@@ -21,7 +21,7 @@ export class SeperatePlayer{
     }
 
     draw(ctx){
-        ctx.fillStyle = 'darkred'; //was white, also was using light green
+        ctx.fillStyle = 'rgb(44, 114, 245)'; //was white, also was using light green, also was using darkred, was also using purple
         //ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         ctx.fillRect(0, 500, this.canvas.width, 100);
         ctx.strokeStyle = 'black';

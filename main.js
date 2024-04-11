@@ -31,7 +31,8 @@ window.addEventListener('load', function(){
         canvas.style.backgroundImage = "url('assets/backgrounds/testVampireBackground3.png')";
     }
     if(gameLevel === 'level5'){
-        canvas.style.backgroundImage = "url('assets/backgrounds/testPortalBackground8.png')";
+        //canvas.style.backgroundImage = "url('assets/backgrounds/testPortalBackground8.png')";
+        canvas.style.backgroundImage = "url('assets/backgrounds/testPortalBackground10.gif')";
     }
 
     //Seeing if the player is hovering over and clicking on the pause menu
@@ -51,6 +52,38 @@ window.addEventListener('load', function(){
         }
         if(this.document.getElementById('canvasRestartButton').innerText == '1'){
             this.window.location.reload();
+        }
+        if(this.document.getElementById('canvasSoundButton').innerText == '1'){
+            //this.document.getElementById('canvasSound').innerHTML = 'Sound Muted';
+            let justClicked = 0;
+            if(this.document.getElementById('canvasSound').innerText == 'Sound Playing' && justClicked == 0){ //muting the sound
+                justClicked = 1;
+                this.document.getElementById('canvasSound').innerHTML = 'Sound Muted';
+
+                //added this
+                let soundObj = {
+                    soundStatus: "Sound Muted"
+                }; //"Sound Playing" for regular, "Sound Muted" for muted
+                
+                let soundObjSerialized = JSON.stringify(soundObj);
+                localStorage.setItem('soundObj', soundObjSerialized);
+                let soundObjDeserialized = JSON.parse(localStorage.getItem('soundObj'));
+                console.log(soundObjDeserialized.soundStatus);
+            }
+            if(this.document.getElementById('canvasSound').innerText == 'Sound Muted' && justClicked == 0){ //unmuting the sound
+                justClicked = 1;
+                this.document.getElementById('canvasSound').innerHTML = 'Sound Playing';
+
+                //added this
+                let soundObj = {
+                    soundStatus: "Sound Playing"
+                }; //"Sound Playing" for regular, "Sound Muted" for muted
+                
+                let soundObjSerialized = JSON.stringify(soundObj);
+                localStorage.setItem('soundObj', soundObjSerialized);
+                let soundObjDeserialized = JSON.parse(localStorage.getItem('soundObj'));
+                console.log(soundObjDeserialized.soundStatus);
+            }
         }
     });
 

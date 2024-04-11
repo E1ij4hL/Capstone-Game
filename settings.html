@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Warrior</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/SmileyFaceIcon.png">
+    <script src="selectLevel.js"></script>
+</head>
+<body onload="setBackground()">
+    <p style="text-align: center; padding-top: 120px; font-size: 2.5vw;">Background Settings</p>
+
+    <div id="settingsButtons">
+        <!--<a href="level_select.html"><button>Exit</button></a>
+
+        <button onclick="displayWaterBackground()">Water</button>
+
+        <button onclick="displayGrassBackground()">Grass</button>
+
+        <button onclick="displayCloudBackground()">Cloud</button>-->
+
+        <span id="exitButtonSettings">
+            <a href="level_select.html"><button><img class="buttonHover" src="assets/buttons images/Exit_Button2.png" 
+                onmouseover="changeImage('assets/buttons images/Exit_Button_Hover2.png', this)" onmouseout="changeImage('assets/buttons images/Exit_Button2.png', this)"></button></a>
+        </span>
+
+        <span id="blankSettings1"></span>
+
+        <span id="waterBackgroundSettings">
+            <button onclick="displayWaterBackground()"><img class="buttonHover" src="assets/buttons images/Water_Background_Button.png" 
+                onmouseover="changeImage('assets/buttons images/Water_Background_Button_Hover.png', this)" onmouseout="changeImage('assets/buttons images/Water_Background_Button.png', this)"></button>
+        </span>
+
+        <br>
+        <br>
+        <br>
+
+        <span id="grassBackgroundSettings">
+            <button onclick="displayGrassBackground()"><img class="buttonHover" src="assets/buttons images/Grass_Background_Button.png" 
+                onmouseover="changeImage('assets/buttons images/Grass_Background_Button_Hover.png', this)" onmouseout="changeImage('assets/buttons images/Grass_Background_Button.png', this)"></button>
+        </span>
+
+        <br>
+        <br>
+        <br>
+
+        <span id="cloudBackgroundSettings">
+            <button onclick="displayCloudBackground()"><img class="buttonHover" src="assets/buttons images/Cloud_Background_Button.png" 
+                onmouseover="changeImage('assets/buttons images/Cloud_Background_Button_Hover.png', this)" onmouseout="changeImage('assets/buttons images/Cloud_Background_Button.png', this)"></button>
+        </span>
+
+        <span id="blankSettings2"></span>
+    </div>
+    
+
+    <script>
+        function displayWaterBackground(){
+            console.log('water background has been displayed');
+            document.body.style.background = "url('assets/backgrounds/waterBackgroundTest10.gif')";
+            
+            let backgroundObj = {
+                backgroundImage: "url('assets/backgrounds/waterBackgroundTest10.gif')"
+            };
+    
+            let backgroundObjSerialized = JSON.stringify(backgroundObj);
+            localStorage.setItem('backgroundObj', backgroundObjSerialized);
+            let backgroundObjDeserialized = JSON.parse(localStorage.getItem('backgroundObj'));
+            console.log(backgroundObjDeserialized.backgroundImage);
+        }
+
+        function displayGrassBackground(){
+            console.log('grass background has been displayed');
+            document.body.style.background = "url('assets/backgrounds/grassBackgroundTest1.png')";
+
+            let backgroundObj = {
+                backgroundImage: "url('assets/backgrounds/grassBackgroundTest1.png')"
+            };
+    
+            let backgroundObjSerialized = JSON.stringify(backgroundObj);
+            localStorage.setItem('backgroundObj', backgroundObjSerialized);
+            let backgroundObjDeserialized = JSON.parse(localStorage.getItem('backgroundObj'));
+            console.log(backgroundObjDeserialized.backgroundImage);
+        }
+
+        function displayCloudBackground(){
+            console.log('cloud background has been displayed');
+            document.body.style.background = "url('assets/backgrounds/animatedCloudBackground.gif')";
+
+            let backgroundObj = {
+                backgroundImage: "url('assets/backgrounds/animatedCloudBackground.gif')"
+            };
+    
+            let backgroundObjSerialized = JSON.stringify(backgroundObj);
+            localStorage.setItem('backgroundObj', backgroundObjSerialized);
+            let backgroundObjDeserialized = JSON.parse(localStorage.getItem('backgroundObj'));
+            console.log(backgroundObjDeserialized.backgroundImage);
+        }
+
+        function setBackground(){
+            let backgroundObjDeserialized = JSON.parse(localStorage.getItem('backgroundObj'));
+            document.body.style.background = backgroundObjDeserialized.backgroundImage.toString();
+            console.log(backgroundObjDeserialized);
+        }
+    </script>
+</body>
+</html>

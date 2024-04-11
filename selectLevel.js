@@ -111,52 +111,7 @@ function removeScores(){
 }
 
 function changeImage(x, image){
-    if(x == 1){
-        image.src = 'assets/START_Button_Hover.png';
-    }
-    if(x == 2){
-        image.src='assets/START_Button.png';
-    }
-    if(x == 3){
-        image.src='assets/LEVEL1_Button_Hover.png';
-    }
-    if(x == 4){
-        image.src='assets/LEVEL1_Button.png';
-    }
-    if(x == 5){
-        image.src='assets/LEVEL2_Button_Hover.png';
-    }
-    if(x == 6){
-        image.src='assets/LEVEL2_Button.png';
-    }
-    if(x == 7){
-        image.src='assets/LEVEL3_Button_Hover.png';
-    }
-    if(x == 8){
-        image.src='assets/LEVEL3_Button.png';
-    }
-    if(x == 9){
-        image.src='assets/LEVEL4_Button_Hover.png';
-    }
-    if(x == 10){
-        image.src='assets/LEVEL4_Button.png';
-    }
-    if(x == 11){
-        image.src='assets/buttons images/Exit_Button_Hover2.png';
-    }
-    if(x == 12){
-        image.src='assets/buttons images/Exit_Button2.png';
-    }
-    if(x == 13){
-        image.src='assets/buttons images/Wipe_Button_Hover2.png';
-    }
-    if(x == 14){
-        image.src='assets/buttons images/Wipe_Button2.png';
-    }
-    if(x == 15){
-        image.src='assets/LEVEL5_Button_Hover.png';
-    }
-    if(x == 16){
-        image.src='assets/LEVEL5_Button.png';
-    }
+    //this function is for handling all of the image changes within the level select and start screen (for button images)
+    //we pass in the image object and the path to the specific asset
+    image.src = x;
 }
