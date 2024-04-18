@@ -1,12 +1,17 @@
 import { Bullet } from "./bullet.js";
 import { Grade } from "./determineGrade.js";
 import { SaveScore } from "./saveScore.js";
+import { Explosion } from "./explosion.js";
 
 export class BulletController{
     bullets = [];
     timerTillNextBullet = 0;
 
     xPositions = [120, 360, 600, 840];
+
+    //added this
+    xPositions1 = [120, 360];
+    xPositions2 = [600, 840];
 
     score = 0;
     beforeScore = 0;
@@ -37,6 +42,9 @@ export class BulletController{
 
     currentLetter = 'a';
     badLetter = false;
+
+    //added this
+    explosions = [];
 
     constructor(canvas, y, keys, gameLevel){
         this.canvas = canvas;
@@ -73,16 +81,28 @@ export class BulletController{
                     }
                 }
                 if((this.gameLevel === 'level4') && this.totalTargets < 49){ //it was 14 when we sent 2 at a time, 13 at 3 at a time, (WAS 14)
-                    this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 3, this.gameLevel));
+                    //this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 3, this.gameLevel));
 
                     //added this
-                    /*var randomSpeed = Math.floor(Math.random() * 2);
+                    var randomSpeed = Math.floor(Math.random() * 2);
                     if(randomSpeed == 1){
-                        this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 4, this.gameLevel));
+                        //this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 4, this.gameLevel));
+                        if(this.amountOfTargets % 2 == 0){
+                            this.bullets.push(new Bullet(this.xPositions1[Math.floor(Math.random() * this.xPositions1.length)], 2.5, this.gameLevel));
+                        }
+                        else{
+                            this.bullets.push(new Bullet(this.xPositions2[Math.floor(Math.random() * this.xPositions2.length)], 2.5, this.gameLevel));
+                        }
                     }
                     else{
-                        this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 3, this.gameLevel));
-                    }*/
+                        //this.bullets.push(new Bullet(this.xPositions[Math.floor(Math.random() * this.xPositions.length)], 3, this.gameLevel));
+                        if(this.amountOfTargets % 2 == 0){
+                            this.bullets.push(new Bullet(this.xPositions1[Math.floor(Math.random() * this.xPositions1.length)], 3, this.gameLevel));
+                        }
+                        else{
+                            this.bullets.push(new Bullet(this.xPositions2[Math.floor(Math.random() * this.xPositions2.length)], 3, this.gameLevel));
+                        }
+                    }
 
                     this.bulletValue = 1;
                 }
@@ -154,7 +174,7 @@ export class BulletController{
         }
 
         if(this.gameLevel === 'level4' && this.totalTargets === 50){ //was 15
-            var accuracyPercentage = this.score / this.totalTargets * 100;
+            var accuracyPercentage = this.score / this.amountOfTargets * 100; //was this.totalTargets instead of this.amountOfTargets
             if(accuracyPercentage < 0){
                 accuracyPercentage = 0;
             }
@@ -213,6 +233,9 @@ export class BulletController{
 
                 //added this
                 this.badLetter = false;
+
+                //added this
+                //this.explosions.splice(index, 1);
             }
 
             else{
@@ -242,6 +265,21 @@ export class BulletController{
             }
             
             bullet.draw(ctx);
+
+            //added this
+            //document.getElementById('targetAmount').innerHTML = this.amountOfTargets;
+            //document.getElementById('targetTotalAmount').innerHTML = this.totalTargets;
+            //document.getElementById('targetsHit').innerHTML = this.score;
+        });
+
+        this.explosions.forEach((boom) => {
+            boom.draw(ctx);
+
+            if(document.getElementById('playExplosion').innerText == 'False'){
+                const index = this.bullets.indexOf(boom);
+                this.explosions.splice(index, 1);
+                //document.getElementById('playExplosion').innerHTML = 'False';
+            }
         });
     }
 
@@ -264,7 +302,16 @@ export class BulletController{
 
         const index = this.bullets.indexOf(bullet);
         this.bullets.splice(index, 1);
-        this.score = this.beforeScore;
+        //this.score = this.beforeScore;
+        //added this
+        if(this.gameLevel === 'level3'){
+            this.score = this.beforeScore;
+        }
+        else{
+            this.score += 1;
+        }
+        //this.score += 1;
+
         this.ensureBullet = 0;
         this.beforeScore = 0;
         this.badA = false;
@@ -278,6 +325,9 @@ export class BulletController{
 
         //added this
         this.badLetter = false;
+
+        //added this
+        //this.explosions.splice(index, 1);
     }
 
     collision(bullet){
@@ -286,6 +336,10 @@ export class BulletController{
             //console.log("YES!, it just hit A");
             //this.score = this.beforeScore;
             this.isA = true;
+
+            //added this
+            document.getElementById('playExplosion').innerHTML = 'True';
+            this.explosions.push(new Explosion(this.xPositions[0] - 40)); //new Explosion(this.xPosition[0])
 
             this.resetStuff(bullet);
         }
@@ -296,6 +350,10 @@ export class BulletController{
             //this.score = this.beforeScore;
             this.isD = true;
 
+            //added this
+            document.getElementById('playExplosion').innerHTML = 'True';
+            this.explosions.push(new Explosion(this.xPositions[1] - 40)); //new Explosion(this.xPosition[0])
+
             this.resetStuff(bullet);
         }
 
@@ -305,6 +363,10 @@ export class BulletController{
             //this.score = this.beforeScore;
             this.isJ = true;
 
+            //added this
+            document.getElementById('playExplosion').innerHTML = 'True';
+            this.explosions.push(new Explosion(this.xPositions[2] - 40)); //new Explosion(this.xPosition[0])
+
             this.resetStuff(bullet);
         }
 
@@ -313,6 +375,10 @@ export class BulletController{
             //console.log("YES!, it just hit L");
             //this.score = this.beforeScore;
             this.isL = true;
+
+            //added this
+            document.getElementById('playExplosion').innerHTML = 'True';
+            this.explosions.push(new Explosion(this.xPositions[3] - 40)); //new Explosion(this.xPosition[0])
 
             this.resetStuff(bullet);
         }
@@ -353,6 +419,11 @@ export class BulletController{
                 //this.addToScore = false;
             //}
             //this.addToScore = false;
+
+            //added this
+            document.getElementById('playExplosion').innerHTML = 'True';
+            this.explosions.push(new Explosion(bullet.x - 40)); //new Explosion(this.xPosition[0])
+
             this.resetStuff(bullet);
         }
 
