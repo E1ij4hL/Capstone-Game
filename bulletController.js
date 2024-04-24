@@ -427,8 +427,11 @@ export class BulletController{
             this.resetStuff(bullet);
         }
 
-        if(bullet.y <= 495 && bullet.y >= 450 && this.keys.includes(this.currentLetter)){
+        if(bullet.y <= 495 && bullet.y >= 440 && this.keys.includes(this.currentLetter)){ //was 450
             this.badLetter = true;
+            
+            //added this
+            console.log('this is being bad');
         }
 
         document.getElementById('result').innerHTML = this.score;
