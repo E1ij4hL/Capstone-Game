@@ -113,6 +113,11 @@
             let backgroundObjDeserialized = JSON.parse(localStorage.getItem('backgroundObj'));
             document.body.style.background = backgroundObjDeserialized.backgroundImage.toString();
             console.log(backgroundObjDeserialized);
+
+            //check if no json objects exist
+            if(myObjDeserialized1 === null){
+                removeScores();
+            }
         }
     </script>
 </body>
