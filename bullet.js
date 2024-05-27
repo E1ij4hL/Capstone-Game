@@ -5,12 +5,17 @@ export class Bullet{
     staggerFrames = 50; //normally 20
     gameNotPaused = true;
 
+    //added this
+    lowLimit = 0.0167;          // Keep At/Below 60fps
+    highLimit = 0.1;            // Keep At/Above 10fps
+    lastTime = Date.now();
+
     constructor(x, speed, gameLevel, bombOrLetter){
         //this.x = 120;
         this.x = x;
         this.y = 25;
         //this.speed = 4; //this is usually 4, increase for more speed
-        this.speed = speed;
+        this.speed = speed * 60;
 
         this.width = 80;
         this.height = 80; //normally 80
@@ -58,8 +63,19 @@ export class Bullet{
         //ctx.fillRect(this.x, this.y, this.width, this.height);
         //ctx.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
 
+        //added this
+        var currentTime = Date.now();
+        var deltaTime = (currentTime - this.lastTime) / 1000;
+        if(deltaTime < this.lowLimit){
+            deltaTime = this.lowLimit;
+        }
+        if(deltaTime > this.highLimit){
+            deltaTime = this.highLimit;
+        }
+        this.lastTime = currentTime;
+
         if(document.getElementById('pausedState').innerText == 'resume'){
-            this.y += this.speed;
+            this.y += this.speed * deltaTime; //modified this
         }
         else{
             this.y = this.y;
