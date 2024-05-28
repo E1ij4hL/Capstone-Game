@@ -4,38 +4,38 @@ export class InputHandler{
         this.keys = [];
         if(this.gameLevel != 'level5'){
             window.addEventListener('keydown', e => {
-                if((e.key === 'a' || e.key === 'd' || e.key === 'j' || e.key === 'l' || e.key === 'w' || e.key === 'Escape') && this.keys.indexOf(e.key) === -1){
-                    this.keys.push(e.key);
+                if((e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd' || e.key.toLowerCase() === 'j' || e.key.toLowerCase() === 'l' || e.key.toLowerCase() === 'w' || e.key === 'Escape') && this.keys.indexOf(e.key) === -1){
+                    this.keys.push(e.key.toLowerCase());
                 }
                 //console.log(e.key, this.keys);
             });
             window.addEventListener('keyup', e => {
-                if(e.key === 'a' || e.key === 'd' || e.key === 'j' || e.key === 'l'){
-                    this.keys.splice(this.keys.indexOf(e.key), 1);
+                if(e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd' || e.key.toLowerCase() === 'j' || e.key.toLowerCase() === 'l'){
+                    this.keys.splice(this.keys.indexOf(e.key.toLowerCase()), 1);
                 }
                 //console.log(e.key, this.keys);
             });
         }
         if(this.gameLevel === 'level5'){
             window.addEventListener('keydown', e => {
-                if((e.key === 'a' || e.key === 'b' || e.key === 'c' || e.key === 'd' || e.key === 'e' || e.key === 'f' ||
-                e.key === 'g' || e.key === 'h' || e.key === 'i' || e.key === 'j' || e.key === 'k' || e.key === 'l' ||
-                e.key === 'm' || e.key === 'n' || e.key === 'o' || e.key === 'p' || e.key === 'q' || e.key === 'r' ||
-                e.key === 's' || e.key === 't' || e.key === 'u' || e.key === 'v' || e.key === 'w' || e.key === 'x' ||
-                e.key === 'y' || e.key === 'z' || e.key === 'Escape' || e.key === 'Control') && this.keys.indexOf(e.key) === -1){
-                    this.keys.push(e.key);
+                if((e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'b' || e.key.toLowerCase() === 'c' || e.key.toLowerCase() === 'd' || e.key.toLowerCase() === 'e' || e.key.toLowerCase() === 'f' ||
+                e.key.toLowerCase() === 'g' || e.key.toLowerCase() === 'h' || e.key.toLowerCase() === 'i' || e.key.toLowerCase() === 'j' || e.key.toLowerCase() === 'k' || e.key.toLowerCase() === 'l' ||
+                e.key.toLowerCase() === 'm' || e.key.toLowerCase() === 'n' || e.key.toLowerCase() === 'o' || e.key.toLowerCase() === 'p' || e.key.toLowerCase() === 'q' || e.key.toLowerCase() === 'r' ||
+                e.key.toLowerCase() === 's' || e.key.toLowerCase() === 't' || e.key.toLowerCase() === 'u' || e.key.toLowerCase() === 'v' || e.key.toLowerCase() === 'w' || e.key.toLowerCase() === 'x' ||
+                e.key.toLowerCase() === 'y' || e.key.toLowerCase() === 'z' || e.key === 'Escape' || e.key === 'Control') && this.keys.indexOf(e.key) === -1){
+                    this.keys.push(e.key.toLowerCase());
                 }
                 //console.log(e.key, this.keys);
             });
             window.addEventListener('keyup', e => {
-                if(e.key === 'a' || e.key === 'b' || e.key === 'c' || e.key === 'd' || e.key === 'e' || e.key === 'f' ||
-                e.key === 'g' || e.key === 'h' || e.key === 'i' || e.key === 'j' || e.key === 'k' || e.key === 'l' ||
-                e.key === 'm' || e.key === 'n' || e.key === 'o' || e.key === 'p' || e.key === 'q' || e.key === 'r' ||
-                e.key === 's' || e.key === 't' || e.key === 'u' || e.key === 'v' || e.key === 'w' || e.key === 'x' ||
-                e.key === 'y' || e.key === 'z'){
-                    this.keys.splice(this.keys.indexOf(e.key), 1);
+                if(e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'b' || e.key.toLowerCase() === 'c' || e.key.toLowerCase() === 'd' || e.key.toLowerCase() === 'e' || e.key.toLowerCase() === 'f' ||
+                e.key.toLowerCase() === 'g' || e.key.toLowerCase() === 'h' || e.key.toLowerCase() === 'i' || e.key.toLowerCase() === 'j' || e.key.toLowerCase() === 'k' || e.key.toLowerCase() === 'l' ||
+                e.key.toLowerCase() === 'm' || e.key.toLowerCase() === 'n' || e.key.toLowerCase() === 'o' || e.key.toLowerCase() === 'p' || e.key.toLowerCase() === 'q' || e.key.toLowerCase() === 'r' ||
+                e.key.toLowerCase() === 's' || e.key.toLowerCase() === 't' || e.key.toLowerCase() === 'u' || e.key.toLowerCase() === 'v' || e.key.toLowerCase() === 'w' || e.key.toLowerCase() === 'x' ||
+                e.key.toLowerCase() === 'y' || e.key.toLowerCase() === 'z'){
+                    this.keys.splice(this.keys.indexOf(e.key.toLowerCase()), 1);
                 }
-                console.log(e.key, this.keys);
+                console.log(e.key.toLowerCase(), this.keys);
             });
         }
     }
