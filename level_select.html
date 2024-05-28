@@ -115,7 +115,9 @@
             console.log(backgroundObjDeserialized);
 
             //check if no json objects exist
-            if(myObjDeserialized1 === null){
+            const myObjDeserialized6 = JSON.parse(localStorage.getItem('scoreObj1'));
+            console.log(JSON.parse(localStorage.getItem('scoreObj6')))
+            if(myObjDeserialized6 === null){
                 removeScores();
             }
         }
