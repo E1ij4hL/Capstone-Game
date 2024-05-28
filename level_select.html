@@ -110,16 +110,14 @@
         document.getElementById('level5Result').innerHTML = '<b>Score: </b>' + myObjDeserialized5.levelScore.toString() + '%' + ' (' + myObjDeserialized5.levelGrade + ')';
 
         function setBackground(){
+            //check if no json objects exist
+            if(JSON.parse(localStorage.getItem('scoreObj1')) === null){
+                removeScores();
+            }
+
             let backgroundObjDeserialized = JSON.parse(localStorage.getItem('backgroundObj'));
             document.body.style.background = backgroundObjDeserialized.backgroundImage.toString();
             console.log(backgroundObjDeserialized);
-
-            //check if no json objects exist
-            const myObjDeserialized6 = JSON.parse(localStorage.getItem('scoreObj1'));
-            console.log(JSON.parse(localStorage.getItem('scoreObj6')))
-            if(myObjDeserialized6 === null){
-                removeScores();
-            }
         }
     </script>
 </body>
