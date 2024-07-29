@@ -174,11 +174,11 @@ div {
 }
 #level1Stuff{
     grid-area: level1Select;
-    padding-top: 100px
+    padding-top: 75px
 }
 #level2Stuff{
     grid-area: level2Select;
-    padding-top: 70px
+    padding-top: 75px
 }
 #level3Stuff{
     grid-area: level3Select;
