@@ -141,7 +141,9 @@ div {
     color: rgb(0, 0, 0);
     /*font-size: 35px;*/
 
-    font-size: 2.1vw; /*was 2.3vw*/
+    font-size: 1.5vw; /*was 2.3vw, newest was 2.1vw*/
+    padding-top: 70px;
+    padding-bottom: 20px;
 }
 
 .buttonHover {
@@ -160,7 +162,7 @@ div {
         "level5Select   settingsSelect";
 
     
-    gap: 25px 300px;
+    gap: 25px 300px; /*was 25px 300px*/
     
 }
 
@@ -172,9 +174,11 @@ div {
 }
 #level1Stuff{
     grid-area: level1Select;
+    padding-top: 100px
 }
 #level2Stuff{
     grid-area: level2Select;
+    padding-top: 70px
 }
 #level3Stuff{
     grid-area: level3Select;
@@ -198,7 +202,7 @@ div {
         "cloudSettings   blankSettingsTwo";
 
     
-    gap: 25px 350px; /*was 25px 500px*/
+    gap: 100px 350px; /*was 25px 500px, newest one was 25px 350px*/
 }
 #exitButtonSettings {
     grid-area: exitSettings;
